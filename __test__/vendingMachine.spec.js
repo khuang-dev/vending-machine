@@ -12,35 +12,30 @@ describe("vendingMachine", () => {
       expect(vendingMachine.getInventory()).toEqual(inventory);
     });
   });
-  describe("When inventory is empty", () => {
-    it("currentQuantity===0", () => {
-      expect(vendingMachine.getProducts([0].currentQuantity)).toEqual(0);
+  //item selection
+  describe("When product s1 is selected", () => {
+    it("return s1", () => {
+      expect(vendingMachine.itemSelection("s1")).toEqual({
+        id: "s1",
+        name: "Salmon Sushi",
+        price: 1.5,
+        currentQuantity: 0,
+        maxQuantity: 20
+      });
+    });
+    describe("When product s1 is empty", () => {
+      it("return 0", () => {
+        expect(() => {
+          vendingMachine.inventoryCheck("s1");
+        }).toThrow("Out of stock");
+      });
+    });
+    describe("When product s1 is low", () => {
+      it("return 2", () => {
+        expect(() => {
+          vendingMachine.inventoryCheck("s2");
+        }).toThrow("Stock is low, please refill");
+      });
     });
   });
-  // describe("When payment of 1.25 is less than cost of 2.00", () => {
-  //   it("will return remaining balance of 0.50 needed", () => {
-  //     expect(vendingMachine(1.5, 2.0)).toEqual(0.5);
-  //   });
-  // });
 });
-
-// inventory
-// describe("inventory", () => {
-//   describe("When inventory is full", () => {
-//     it("units will equal 10", () => {
-//       expect(inventory(10)).toEqual(true);
-//     });
-//   });
-//   describe("When inventory is low", () => {
-//     it("units will be less than 3 but more than 1", () => {
-//       expect(inventory(2)).toEqual(false);
-//     });
-//   });
-//   describe("When inventory is empty", () => {
-//     it("units will equal 0", () => {
-//       expect(() => {
-//         inventory(0);
-//       }).toThrow();
-//     });
-//   });
-// });
