@@ -45,6 +45,14 @@ describe("vendingMachine", () => {
         expect(vendingMachine.restockProduct("s1")).toEqual(20);
       });
     });
+    //max inventory cannot restock
+    describe("When product is full", () => {
+      it("returns currentQuantity to 20", () => {
+        expect(() => {
+          vendingMachine.restockProduct("s1", 20);
+        }).toThrow("Inventory maxed out");
+      });
+    });
     //validate coin input amount
     describe("When coin input is [5, 5, 1, 1, 1]", () => {
       it("return 3.00", () => {
@@ -63,6 +71,12 @@ describe("vendingMachine", () => {
         expect(vendingMachine.coinInventoryCheck("dime")).toEqual(true);
       });
     });
+    //restock coins
+    describe("When coin count is not 0", () => {
+      it("return true", () => {
+        expect(vendingMachine.restockCoins("dime")).toEqual(true);
+      });
+    });
     //check if credit amount is less than required price
     describe("When credit amount is less than price", () => {
       it("insufficient fund", () => {
@@ -78,29 +92,35 @@ describe("vendingMachine", () => {
           0
         );
       });
-      //dispense change
-      describe("calculate minimal amount of change to give", () => {
-        it("return 2 toonie, 1 loonie, 2 quarter, 0 dime, 0 nickel", () => {
-          expect(vendingMachine.dispenseChange(5.5)).toEqual({
-            toonie: 2,
-            loonie: 1,
-            quarter: 2,
-            dime: 0,
-            nickel: 0
-          });
+    });
+    //dispense change
+    describe("calculate minimal amount of change to give", () => {
+      it("return 2 toonie, 1 loonie, 2 quarter, 0 dime, 0 nickel", () => {
+        expect(vendingMachine.dispenseChange(5.5)).toEqual({
+          toonie: 2,
+          loonie: 1,
+          quarter: 2,
+          dime: 0,
+          nickel: 0
         });
-        //no change to dispense
-        describe("When change to give is 0", () => {
-          it("return 0", () => {
-            expect(vendingMachine.dispenseChange(0)).toEqual({
-              toonie: 0,
-              loonie: 0,
-              quarter: 0,
-              dime: 0,
-              nickel: 0
-            });
-          });
+      });
+    });
+    //no change to dispense
+    describe("When change to give is 0", () => {
+      it("return 0", () => {
+        expect(vendingMachine.dispenseChange(0)).toEqual({
+          toonie: 0,
+          loonie: 0,
+          quarter: 0,
+          dime: 0,
+          nickel: 0
         });
+      });
+    });
+    //dispense product
+    describe("When s3 is dispensed", () => {
+      it("returns 19", () => {
+        expect(vendingMachine.dispenseProduct("s3")).toEqual(19);
       });
     });
   });
