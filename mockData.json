@@ -40,32 +40,27 @@
     {
       "id": "nickel",
       "price": 0.05,
-      "currentQuantity": 0,
-      "maxQuantity": 50
+      "currentQuantity": 0
     },
     {
       "id": "dime",
       "price": 0.1,
-      "currentQuantity": 50,
-      "maxQuantity": 50
+      "currentQuantity": 50
     },
     {
       "id": "quarter",
       "price": 0.25,
-      "currentQuantity": 50,
-      "maxQuantity": 50
+      "currentQuantity": 50
     },
     {
       "id": "loonie",
       "price": 1.0,
-      "currentQuantity": 20,
-      "maxQuantity": 20
+      "currentQuantity": 20
     },
     {
       "id": "toonie",
       "price": 2.0,
-      "currentQuantity": 20,
-      "maxQuantity": 20
+      "currentQuantity": 20
     }
   ]
 }
