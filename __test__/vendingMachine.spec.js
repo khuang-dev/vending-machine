@@ -119,31 +119,29 @@ describe("vendingMachine", () => {
     });
 
     // update inserted coins
-    describe("When 1 dime, 1 quarter, 1 loonie, 1 toonie is inserted", () => {
-      it("returns [0, 51, 51, 21, 21]", () => {
-        expect(
-          vendingMachine.updateInsertedCoins({
-            nickel: 5,
-            dime: 0,
-            quarter: 0,
-            loonie: 0,
-            toonie: 0
-          })
-        ).toEqual([5, 50, 50, 20, 20]);
+    describe("When 1 nickel is inserted", () => {
+      it("returns [5, 50, 50, 20, 20]", () => {
+        expect(vendingMachine.updateInsertedCoins([5, 0, 0, 0, 0])).toEqual([
+          5,
+          50,
+          50,
+          20,
+          20
+        ]);
       });
     });
     // update dispensed coins
-    describe("When 1 dime, 1 quarter, 1 loonie, 1 toonie is dispensed", () => {
-      it("returns [0, 49, 49, 19, 19]", () => {
+    describe("When 5 toonie is dispensed", () => {
+      it("returns [5, 50, 50, 19, 20]", () => {
         expect(
           vendingMachine.updateDispensedCoins({
             nickel: 0,
             dime: 0,
             quarter: 0,
-            loonie: 0,
-            toonie: 5
+            loonie: 1,
+            toonie: 0
           })
-        ).toEqual([5, 50, 50, 20, 15]);
+        ).toEqual([5, 50, 50, 19, 20]);
       });
     });
     //dispense product
