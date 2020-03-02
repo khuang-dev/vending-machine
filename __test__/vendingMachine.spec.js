@@ -1,5 +1,5 @@
 const VendingMachine = require("../lib/vendingMachine.js/");
-const inventory = require("../mockData.json");
+const inventory = require("../inventory.json");
 
 //vending machine
 describe("vendingMachine", () => {
